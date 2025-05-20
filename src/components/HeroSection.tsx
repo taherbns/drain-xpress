@@ -14,9 +14,9 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-skyblue to-skyblue/10 min-h-[90vh] flex items-center">
-      <div className="absolute inset-0 bg-black/50 z-0" />
-      <div className="container mx-auto px-4 z-10">
+   <section className="relative bg-gradient-to-b from-sky-400 to-sky-100 min-h-[90vh] flex items-center">
+  <div className="absolute inset-0 bg-black/40 z-0" />
+  <div className="relative z-10 container mx-auto px-4 text-white">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Bloc gauche : texte */}
           <div className="w-full lg:w-1/2 py-12 lg:py-0 text-white">
