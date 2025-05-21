@@ -44,7 +44,7 @@ import {
             
             
               <img
-  src= "../../public/assets/Drain-xpress.png" // Assure-toi du bon chemin
+  src= "assets/Drain-xpress.png" // Assure-toi du bon chemin
   alt="Logo Drain-Xpress"
   className="h-20 w-auto object-contain "
 />
