@@ -1,72 +1,90 @@
-
-import React from "react";
+import React, { useState, useRef } from "react";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { EmailPopup } from "@/components/EmailPopup";
 import { HeroSection } from "@/components/HeroSection";
-// import { ServicesSection } from "@/components/ServicesSection";
 import { AboutSection } from "@/components/AboutSection";
-// import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactForm } from "@/components/ContactForm";
 import { ServicesSection } from "@/components/ServicesSection";
 import { Footer } from "@/components/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-;
-
 import {
-  Sheet, 
+  Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-// Navigation component
-
-  
- const Navigation: React.FC = () => {
+const Navigation: React.FC = () => {
   const { t } = useLanguage();
-
-  const menuItems = [
-    { label: "home", href: "#" },
-    { label: "about", href: "#about" },
-    // { label: "services", href: "#services" },
-    { label: "contact", href: "#contact" },
-  ];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   return (
     <header className="bg-white/90 backdrop-blur-sm shadow-md fixed w-full top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo stylisé */}
+        <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <a href="#" className="flex items-center space-x-2">
-            
-            
               <img
-  src= "assets/Drain-xpress.png" // Assure-toi du bon chemin
-  alt="Logo Drain-Xpress"
-  className="h-20 w-auto object-contain "
-/>
-
-
+                src="/assets/Drain-xpress.png"
+                alt="Logo Drain-Xpress"
+                className="h-16 w-auto object-contain"
+              />
             </a>
           </div>
 
-          {/* Menu desktop */}
-          <nav className="hidden md:flex space-x-8">
-            {menuItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-gray-700 hover:text-skyblue font-medium transition-colors duration-200"
+          <nav className="hidden md:flex gap-12 items-center relative">
+            <a href="#" className="text-gray-700 hover:text-skyblue font-medium text-base lg:text-lg transition-colors duration-200">
+              Accueil
+            </a>
+            <a href="#about" className="text-gray-700 hover:text-skyblue font-medium text-base lg:text-lg transition-colors duration-200">
+              À propos
+            </a>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+              ref={dropdownRef}
+            >
+              <button
+                className="text-gray-700 hover:text-skyblue font-medium text-base lg:text-lg transition-colors duration-200 focus:outline-none"
               >
-                {t(item.label)}
-              </a>
-            ))}
+                Services
+              </button>
+              <div
+                className={`absolute top-full left-0 mt-0 bg-white rounded shadow-lg z-50 transition-opacity duration-200 ${isDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+              >
+                <ul className="min-w-[220px] py-2 px-4 text-left">
+                  <li>
+                    <a href="#drain" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Débouchage de drain
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#camera" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Inspection par caméra
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#prevention" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Nettoyage préventif
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium text-base lg:text-lg transition-colors duration-200">
+              Demande de soumission
+            </a>
+            <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium text-base lg:text-lg transition-colors duration-200">
+              Contact
+            </a>
           </nav>
 
-          {/* Langue + CTA + Menu mobile */}
           <div className="flex items-center gap-3">
             <LanguageToggle />
             <Button
@@ -75,10 +93,9 @@ import {
               }
               className="ml-2 bg-skyblue hover:bg-skyblue-dark text-white hidden md:block"
             >
-              {t("freeEstimate")}
+              Demander une soumission gratuite
             </Button>
 
-            {/* Menu mobile */}
             <Sheet>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon" aria-label="Open mobile menu">
@@ -87,22 +104,24 @@ import {
               </SheetTrigger>
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 mt-8">
-                  {menuItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="text-gray-700 hover:text-skyblue font-medium text-lg py-2 transition-colors duration-200"
-                    >
-                      {t(item.label)}
-                    </a>
-                  ))}
+                  <a href="#" className="text-gray-700 hover:text-skyblue font-medium text-lg py-2">Accueil</a>
+                  <a href="#about" className="text-gray-700 hover:text-skyblue font-medium text-lg py-2">À propos</a>
+                  <div className="border-t pt-2">
+                    <span className="text-gray-700 font-medium text-lg py-1">Services</span>
+                    <a href="#drain" className="block text-gray-600 hover:text-skyblue pl-4 py-1">Débouchage de drain</a>
+                    <a href="#camera" className="block text-gray-600 hover:text-skyblue pl-4 py-1">Inspection par caméra</a>
+                    <a href="#prevention" className="block text-gray-600 hover:text-skyblue pl-4 py-1">Nettoyage préventif</a>
+                  </div>
+                  <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium text-lg py-2">Demande de soumission</a>
+                  <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium text-lg py-2">Contact</a>
+
                   <Button
                     onClick={() =>
                       document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                     }
                     className="mt-4 bg-skyblue hover:bg-skyblue-dark text-white"
                   >
-                    {t("freeEstimate")}
+                    Demander une soumission gratuite
                   </Button>
                 </div>
               </SheetContent>
@@ -114,20 +133,16 @@ import {
   );
 };
 
-
-// Main application
 const Index: React.FC = () => {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-white">
         <Navigation />
-        <div className="pt-16"> {/* Add padding to account for fixed header */}
+        <div className="pt-20">
           <HeroSection />
-           <ServicesSection /> 
-          
-        
+          <ServicesSection />
           <ContactForm />
-           <AboutSection />
+          <AboutSection />
           <Footer />
           <EmailPopup />
         </div>
