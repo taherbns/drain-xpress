@@ -12,7 +12,7 @@ export const ServicesSection: React.FC = () => {
       description:
         "Élimination rapide et efficace des obstructions dans vos canalisations, avec des outils professionnels.",
       image:
-        "https://images.unsplash.com/photo-1607082352305-326d1c9c13d5?auto=format&fit=crop&w=800&q=80",
+        "https://i.pinimg.com/736x/26/4f/aa/264faa39c52b6c4cb152c606aabe9653.jpg",
     },
     {
       id: "camera",
@@ -20,42 +20,41 @@ export const ServicesSection: React.FC = () => {
       description:
         "Diagnostic précis de l’état de vos tuyaux sans ouvrir les murs grâce à des caméras haute résolution.",
       image:
-        "https://images.unsplash.com/photo-1581578017421-8fd6aa0dfe8f?auto=format&fit=crop&w=800&q=80",
+        "https://i.pinimg.com/736x/02/a1/ea/02a1eabedd739f688550899ec2e7200b.jpg",
     },
     {
       id: "prevention",
       title: "Nettoyage préventif",
       description:
         "Un entretien régulier pour éviter les urgences et prolonger la durée de vie de vos installations.",
-     
+      image:
+        "https://i.pinimg.com/736x/f4/b5/46/f4b54649bd1b7d6732fbffa6ac334835.jpg",
     },
   ];
 
   return (
-    <section
-      id="services"
-      className="relative bg-gradient-to-b  from-[#66b4ff] to-skyblue/10 py-20"
-    >
-      <div className="absolute inset-0 bg-black/50 z-0" />
-      <div className="relative z-10 container mx-auto px-4">
+    <section id="services" className="relative bg-[#eaf3fb] py-20">
+
+      <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-14 max-w-3xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-white mb-4">
+          <h2 className="text-4xl font-extrabold text-[#1262c9] mb-4">
             Nos Services
           </h2>
-          <p className="text-blue-100 text-lg sm:text-xl leading-relaxed font-medium">
+          <p className="text-gray-700 text-lg sm:text-xl leading-relaxed font-medium">
             Des solutions rapides, fiables et durables pour tous vos besoins en drainage.
           </p>
-          <div className="w-16 h-1 bg-sky-400 mx-auto mt-6 rounded"></div>
+          <div className="w-16 h-1 bg-[#1262c9] mx-auto mt-6 rounded"></div>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service) => (
             <div
               key={service.id}
               id={service.id}
-              className="rounded-xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:shadow-2xl transition"
+              className="rounded-xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm border border-white/20"
+
             >
               <img
                 src={service.image}
@@ -63,17 +62,17 @@ export const ServicesSection: React.FC = () => {
                 className="h-48 w-full object-cover"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-2xl font-bold text-[#1262c9] mb-2">
                   {service.title}
                 </h3>
-                <p className="text-blue-100 text-base mb-4">
+                <p className="text-gray-600 text-base mb-4">
                   {service.description}
                 </p>
                 <Button
                   onClick={() =>
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="bg-skyblue hover:bg-skyblue-dark text-white"
+                  className="bg-[#1262c9] hover:bg-[#0f4eb2] text-white"
                 >
                   Demander ce service
                 </Button>

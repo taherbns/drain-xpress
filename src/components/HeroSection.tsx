@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageContext";
-import { Phone, ArrowDown, Wrench, Camera, Droplet } from "lucide-react";
+import { ArrowDown, AlarmClock, Phone } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   const { t } = useLanguage();
@@ -14,98 +14,85 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-[#66b4ff] to-sky-100 min-h-[110vh] flex items-center">
-      <div className="absolute inset-0 bg-black/40 z-0" />
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-10">
+   <section className="bg-[#295da0] min-h-[100vh] flex items-center">
 
-          {/* Texte à gauche */}
-          <div className="w-full lg:w-1/2 text-white space-y-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Débouchage de drain rapide et garanti à Montréal
+
+      <div className="relative z-10 container mx-auto px-4 text-white">
+        <div className="flex flex-col lg:flex-row items-center">
+          {/* Bloc gauche : texte */}
+          <div className="w-full lg:w-1/2 py-12 lg:py-0 text-white space-y-5">
+            {/* Badge urgence */}
+            <div className="flex items-center gap-2 bg-[#e80505] text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md w-fit">
+              <AlarmClock className="w-4 h-4" />
+              {t("emergencyService") || "Service d'urgence 24h/24"}
+            </div>
+
+            {/* Badge estimation */}
+            <div className="bg-white text-[#1262c9] text-sm md:text-base font-bold py-1 px-3 rounded-full w-fit">
+              {t("freeEstimate")}
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              {t("heroTitle")}
             </h1>
 
-            <p className="text-lg text-white/90 max-w-md">
-              Intervention 24h/24 pour débouchage, inspection par caméra et nettoyage préventif.
+            <p className="text-xl text-white/90 max-w-xl">
+              {t("heroSubtitle")}
             </p>
 
-            <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-xl">
-              Plus de 20 ans d’expérience. Service fiable, efficace, avec garantie satisfaction.
-            </p>
-
-            <div className="flex items-center gap-3 text-white text-lg font-semibold">
-              <Phone className="w-5 h-5" />
-              <a href="tel:+15145550123" className="underline hover:text-skyblue transition">
-                +1 (514) 555-0123
-              </a>
+            <div className="text-white/85 text-l leading-relaxed space-y-2 max-w-lg">
+              <p>
+                {t("emergencyDescription") || "Notre équipe est disponible 24h/24 pour vos urgences de drainage."}
+              </p>
+              <div className="flex items-center gap-2 mt-2">
+                <Phone className="w-4 h-4 text-white/70" />
+                <a
+                  href="tel:+15145550123"
+                  className="underline font-semibold hover:text-[#e80505] transition"
+                >
+                  +1 (514) 555-0123
+                </a>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4 mt-4">
               <Button
                 onClick={scrollToContact}
-                className="bg-white text-skyblue hover:bg-gray-100 font-semibold px-6 py-3"
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-[#1262c9] hover:text-[#101c9e] text-lg px-8 py-6"
               >
-                Demander une soumission gratuite
+                {t("callToAction")}
               </Button>
+
               <a
                 href="tel:+15145550123"
-                className="inline-flex items-center px-6 py-3 rounded bg-red-600 text-white font-semibold hover:bg-red-700"
+                className="md:hidden inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#1262c9] text-white font-medium text-base hover:bg-[#101c9e] transition"
               >
-                Urgence 24/7
+                <Phone className="mr-2 w-4 h-4" />
+                {t("callNow") || "Appeler maintenant"}
               </a>
             </div>
 
-            <div className="mt-10 hidden md:block animate-bounce">
+            <div className="mt-12 animate-bounce hidden md:block">
               <ArrowDown className="h-8 w-8 text-white mx-auto" />
             </div>
           </div>
 
-          {/* Image à droite */}
-          <div className="w-full lg:w-1/2 animate-fade-in">
-            <div className="rounded-lg shadow-xl overflow-hidden">
+          {/* Bloc droit : image */}
+          <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
+            <div className="relative rounded-lg overflow-hidden shadow-xl animate-fade-in">
               <img
                 src="https://images.unsplash.com/photo-1523552322653-4ca2658acbb0?ixlib=rb-4.1.0&q=80&w=1000&fit=crop"
-                alt="Drain-Xpress"
-                className="w-full h-[400px] object-cover"
+                alt="Professional drain cleaning"
+                className="w-full h-96 object-cover"
               />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                <div className="bg-[#1262c9] text-white px-4 py-2 rounded-full inline-block mb-2">
+                  {t("discountOffer")}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Services rapides (liens vers sections) */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-white">
-          <a
-            href="#drain"
-            className="flex flex-col items-center bg-white/10 hover:bg-white/20 p-6 rounded-lg transition-all"
-          >
-            <Wrench className="h-8 w-8 text-white mb-3" />
-            <h3 className="text-xl font-semibold mb-1">Débouchage de drain</h3>
-            <p className="text-white/80 text-sm">
-              Élimination rapide et efficace des obstructions.
-            </p>
-          </a>
-
-          <a
-            href="#camera"
-            className="flex flex-col items-center bg-white/10 hover:bg-white/20 p-6 rounded-lg transition-all"
-          >
-            <Camera className="h-8 w-8 text-white mb-3" />
-            <h3 className="text-xl font-semibold mb-1">Inspection par caméra</h3>
-            <p className="text-white/80 text-sm">
-              Diagnostic sans démolition, localisez le problème.
-            </p>
-          </a>
-
-          <a
-            href="#prevention"
-            className="flex flex-col items-center bg-white/10 hover:bg-white/20 p-6 rounded-lg transition-all"
-          >
-            <Droplet className="h-8 w-8 text-white mb-3" />
-            <h3 className="text-xl font-semibold mb-1">Nettoyage préventif</h3>
-            <p className="text-white/80 text-sm">
-              Prévenez les urgences avec un entretien régulier.
-            </p>
-          </a>
         </div>
       </div>
     </section>
