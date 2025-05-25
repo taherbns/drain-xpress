@@ -66,7 +66,7 @@ const services = [
                   onClick={() =>
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                   }
-                  className="bg-[#1262c9] hover:bg-[#0f4eb2] text-white"
+                  className="bg-[#1262c9] hover:bg-[#0f4eb2] text-white items-center justify-center w-full h-12 rounded-lg font-semibold transition duration-200 ease-in-out "
                 >
                    {t("requestService")}
                 </Button>

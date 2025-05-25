@@ -61,7 +61,7 @@ const translations: Translations = {
   fr: "Débouchage de drain"
 },
 "serviceDrainDesc": {
-  en: "Quick and efficient removal of clogs from your pipes using professional tools.",
+  en: "Quick and efficient removal of clogs from your pipes using professional tools .",
   fr: "Élimination rapide et efficace des obstructions dans vos canalisations, avec des outils professionnels."
 },
 "serviceCameraTitle": {
