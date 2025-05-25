@@ -17,7 +17,7 @@ export const ContactForm: React.FC = () => {
     email: "",
     drainSize: "",
     message: "",
-    subject: "",
+  subject: [],
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,7 +42,7 @@ export const ContactForm: React.FC = () => {
         email: "",
         drainSize: "",
         message: "",
-        subject: "",
+        subject: [],
       });
       toast({
         title: t("contactSuccess"),
@@ -53,6 +53,15 @@ export const ContactForm: React.FC = () => {
       });
     }, 1500);
   };
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { value, checked } = e.target;
+  setFormData((prev) => {
+    const updatedSubjects = checked
+      ? [...prev.subject, value]
+      : prev.subject.filter((s: string) => s !== value);
+    return { ...prev, subject: updatedSubjects };
+  });
+};
 
   return (
     <section id="contact" className="relative bg-[#eaf3fb] py-20">
@@ -84,11 +93,11 @@ export const ContactForm: React.FC = () => {
                     </div>
                     <div className="flex items-center">
                       <Mail className="h-5 w-5 mr-3" />
-                      <p>contact@drainpro.com</p>
+                      <p>info.drainxpress@gmail.com</p>
                     </div>
                     <div className="flex items-center">
                       <MapPin className="h-5 w-5 mr-3" />
-                      <p>123 Drain Street, Montréal</p>
+                      <p>2175 Rue St-Patrick, Montréal</p>
                     </div>
                   </div>
                 </div>
@@ -179,25 +188,53 @@ export const ContactForm: React.FC = () => {
                       <span className="ml-2 text-sm text-gray-500">cm</span>
                     </div>
                   </div>
+                <label className="block text-sm font-medium mb-2">
+                  Sujet de la demande *
+                </label>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-1">
-                      Sujet de la demande *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full border border-gray-300 rounded px-3 py-2 bg-white text-gray-700"
-                    >
-                      <option value="" disabled>Choisissez une option</option>
-                      <option value="expert">Parler à un expert dès maintenant</option>
-                      <option value="camera">Réserver une inspection caméra</option>
-                      <option value="prevention">Planifier un entretien préventif</option>
-                    </select>
-                  </div>
+               <div>
+  <label className="block text-sm font-medium mb-2">
+    Sujet de la demande *
+  </label>
+
+  <div className="space-y-2">
+    <label className="flex items-center space-x-2 text-gray-700">
+      <input
+        type="checkbox"
+        name="subject"
+        value="expert"
+        checked={formData.subject.includes("expert")}
+        onChange={handleCheckboxChange}
+        className="h-4 w-4 text-skyblue border-gray-300 rounded"
+      />
+      <span>Parler à un expert dès maintenant</span>
+    </label>
+
+    <label className="flex items-center space-x-2 text-gray-700">
+      <input
+        type="checkbox"
+        name="subject"
+        value="camera"
+        checked={formData.subject.includes("camera")}
+        onChange={handleCheckboxChange}
+        className="h-4 w-4 text-skyblue border-gray-300 rounded"
+      />
+      <span>Réserver une inspection caméra</span>
+    </label>
+
+    <label className="flex items-center space-x-2 text-gray-700">
+      <input
+        type="checkbox"
+        name="subject"
+        value="prevention"
+        checked={formData.subject.includes("prevention")}
+        onChange={handleCheckboxChange}
+        className="h-4 w-4 text-skyblue border-gray-300 rounded"
+      />
+      <span>Planifier un entretien préventif</span>
+    </label>
+  </div>
+</div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-1">

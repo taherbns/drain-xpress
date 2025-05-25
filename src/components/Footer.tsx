@@ -70,11 +70,11 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-2 text-skyblue" />
-                <span className="text-gray-400">contact@drainpro.com</span>
+                <span className="text-gray-400">info.drainxpress@gmail.com</span>
               </li>
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-2 text-skyblue flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400">123 Drain Street, City, Country</span>
+                <span className="text-gray-400">2175 Rue St-Patrick, Montréal</span>
               </li>
             </ul>
           </div>

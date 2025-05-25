@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-type Language = 'en' | 'fr';
+type Language = 'fr' | 'en';
 
 type Translations = {
   [key: string]: {
@@ -44,34 +44,55 @@ const translations: Translations = {
   en: "Call Now",
   fr: "Appeler maintenant"
 },
+"discountOffer": { en: "10% DISCOUNT on drains over 45cm", fr: "10% DE RABAIS pour les drains de plus de 45cm" ,
+  },
 
   // Services Section
-  "ourServices": { en: "Our Top Drain Unblocking Services", fr: "Nos Services de Débouchage de Drain" },
-  "servicesSubtitle": { 
-    en: "Explore our range of professional drain unblocking services! We tackle everything from minor clogs to major blockages.", 
-    fr: "Découvrez notre gamme de services professionnels de débouchage! Nous traitons tout, des petits bouchons aux blocages majeurs."
-  },
-  "residentialTitle": { en: "Residential Drain Clearing", fr: "Débouchage Résidentiel" },
-  "residentialDesc": { 
-    en: "Complete drain cleaning solutions for your home, backed by our satisfaction guarantee.", 
-    fr: "Solutions complètes de nettoyage de drain pour votre maison, garanties satisfaction." 
-  },
-  "commercialTitle": { en: "Commercial Drain Services", fr: "Services Commerciaux" },
-  "commercialDesc": { 
-    en: "Specialized services for businesses and commercial properties with minimal disruption.", 
-    fr: "Services spécialisés pour entreprises et propriétés commerciales avec perturbation minimale." 
-  },
-  "emergencyTitle": { en: "Emergency Drain Rescue", fr: "Urgence Drain" },
-  "emergencyDesc": { 
-    en: "24/7 rapid response to drainage emergencies. We're always here when you need us most.", 
-    fr: "Intervention rapide 24/7 pour les urgences de drainage. Toujours présents quand vous en avez besoin." 
-  },
-  "getQuote": { en: "Get Quote", fr: "Obtenir Devis" },
-  "discountOffer": { en: "10% DISCOUNT on drains over 45cm", fr: "10% DE RABAIS pour les drains de plus de 45cm" },
-  "discountOfferDesc": {
-    en: "Contact us today to take advantage of this special offer!",
-    fr: "Contactez-nous aujourd'hui pour profiter de cette offre spéciale!"
-  },
+ "ourServicesTitle": {
+  en: "Our Services",
+  fr: "Nos Services"
+},
+"ourServicesSubtitle": {
+  en: "Fast, reliable, and long-lasting solutions for all your drainage needs.",
+  fr: "Des solutions rapides, fiables et durables pour tous vos besoins en drainage."
+},
+"serviceDrainTitle": {
+  en: "Drain Unclogging",
+  fr: "Débouchage de drain"
+},
+"serviceDrainDesc": {
+  en: "Quick and efficient removal of clogs from your pipes using professional tools.",
+  fr: "Élimination rapide et efficace des obstructions dans vos canalisations, avec des outils professionnels."
+},
+"serviceCameraTitle": {
+  en: "Camera Inspection",
+  fr: "Inspection par caméra"
+},
+"serviceCameraDesc": {
+  en: "Accurate diagnosis of your pipes' condition without breaking walls thanks to high-resolution cameras.",
+  fr: "Diagnostic précis de l’état de vos tuyaux sans ouvrir les murs grâce à des caméras haute résolution."
+},
+"servicePreventiveTitle": {
+  en: "Preventive Cleaning",
+  fr: "Nettoyage préventif"
+},
+"servicePreventiveDesc": {
+  en: "Regular maintenance to avoid emergencies and extend the life of your installations.",
+  fr: "Un entretien régulier pour éviter les urgences et prolonger la durée de vie de vos installations."
+},
+"requestService": {
+  en: "Request this service",
+  fr: "Demander ce service"
+} ,
+"Service": {
+  en: "Our Services",
+  fr: "Nos Services"
+},
+"ourServices": {
+  en: "Fast, reliable, and long-lasting solutions for all your drainage needs.",
+  fr: "Des solutions rapides, fiables et durables pour tous vos besoins en drainage."
+},
+
 
   // Services Guarantees
  serviceExpertTitle: {
@@ -204,7 +225,7 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('fr');
 
   const t = (key: string): string => {
     if (!translations[key]) {
