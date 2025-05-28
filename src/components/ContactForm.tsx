@@ -79,6 +79,7 @@ export const ContactForm: React.FC = () => {
             <div className="flex flex-col md:flex-row">
               {/* Infos à gauche */}
               <div className="bg-[#1262c9] md:w-1/3 p-8 text-white flex flex-col justify-between">
+
                 <div>
                   <h3 className="text-2xl font-bold mb-6">
                     {t("contactInfo")}
