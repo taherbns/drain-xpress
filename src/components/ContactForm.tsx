@@ -29,12 +29,37 @@ export const ContactForm: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsSubmitting(false);
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("http://localhost:5000/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      toast({
+        title: t("contactSuccess"),
+        description:
+          t("language") === "en"
+            ? "We'll get back to you as soon as possible."
+            : "Nous vous répondrons dès que possible.",
+        duration: 5000,
+      });
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -44,15 +69,26 @@ export const ContactForm: React.FC = () => {
         message: "",
         subject: [],
       });
+    } else {
+      console.error("Erreur backend :", result.error);
       toast({
-        title: t("contactSuccess"),
-        description: t("language") === "en"
-          ? "We'll get back to you as soon as possible."
-          : "Nous vous répondrons dès que possible.",
+        title: "Erreur",
+        description: "Échec de l'envoi de l'email.",
         duration: 5000,
       });
-    }, 1500);
-  };
+    }
+  } catch (error) {
+    console.error("Erreur envoi :", error);
+    toast({
+      title: "Erreur",
+      description: "Une erreur est survenue. Veuillez réessayer.",
+      duration: 5000,
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { value, checked } = e.target;
   setFormData((prev) => {
