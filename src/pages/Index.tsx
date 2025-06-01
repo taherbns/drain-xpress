@@ -22,15 +22,20 @@ const Navigation: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleLinkClick = (id: string) => {
+const handleLinkClick = (id: string) => {
+  requestAnimationFrame(() => {
     setTimeout(() => {
       if (id) {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }, 100);
-  };
+  });
+};
 
   return (
     <header className="bg-white/90 backdrop-blur-sm shadow-md fixed w-full top-0 z-50">
