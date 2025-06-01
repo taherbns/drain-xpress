@@ -173,26 +173,7 @@ export const ContactForm: React.FC = () => {
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="drainSize" className="block text-sm font-medium mb-1">
-                      {t("drainSize")}
-                    </label>
-                    <div className="flex items-center">
-                      <Input
-                        id="drainSize"
-                        name="drainSize"
-                        type="number"
-                        placeholder="45"
-                        value={formData.drainSize}
-                        onChange={handleChange}
-                      />
-                      <span className="ml-2 text-sm text-gray-500">cm</span>
-                    </div>
-                  </div>
-                <label className="block text-sm font-medium mb-2">
-                  Sujet de la demande *
-                </label>
-
+                
                <div>
   <label className="block text-sm font-medium mb-2">
     Sujet de la demande *

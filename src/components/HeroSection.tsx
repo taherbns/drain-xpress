@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
               {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                 <div className="bg-[#1262c9] text-white px-4 py-2 rounded-full inline-block mb-2">
                /*   {t("discountOffer")}*/ }
-                {/* </div> */}
+                {/* </div> */} 
               {/* </div> */}
             </div>
           </div>
