@@ -22,38 +22,30 @@ const Navigation: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-const handleLinkClick = (id: string) => {
-  requestAnimationFrame(() => {
+  const handleLinkClick = (id: string) => {
     setTimeout(() => {
-      if (id) {
-        const target = document.getElementById(id);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
       }
-    }, 100);
-  });
-};
+    }, 50);
+  };
 
   return (
     <header className="bg-white/90 backdrop-blur-sm shadow-md fixed w-full top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center">
-            <a href="#" className="flex items-center space-x-2">
-              <img
-                src="/assets/Drain-xpress.png"
-                alt="Logo Drain-Xpress"
-                className="h-16 w-auto object-contain"
-              />
-            </a>
-          </div>
+          <a href="#" className="flex items-center space-x-2">
+            <img
+              src="/assets/Drain-xpress.png"
+              alt="Logo Drain-Xpress"
+              className="h-16 w-auto object-contain"
+            />
+          </a>
 
           <nav className="hidden md:flex gap-12 items-center relative">
-            <a href="#" className="text-gray-700 hover:text-skyblue">Accueil</a>
-            <a href="#about" className="text-gray-700 hover:text-skyblue">À propos</a>
+            <a href="#" className="text-gray-700 hover:text-skyblue font-medium">Accueil</a>
+            <a href="#about" className="text-gray-700 hover:text-skyblue font-medium">À propos</a>
 
             <div
               className="relative"
@@ -61,18 +53,40 @@ const handleLinkClick = (id: string) => {
               onMouseLeave={() => setIsDropdownOpen(false)}
               ref={dropdownRef}
             >
-              <button className="text-gray-700 hover:text-skyblue">Services</button>
-              <div className={`absolute top-full left-0 mt-0 bg-white rounded shadow-lg z-50 ${isDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-                <ul className="min-w-[220px] py-2 px-4">
-                  <li><a href="#drain" className="block py-2 text-gray-700 hover:text-skyblue">Débouchage de drain</a></li>
-                  <li><a href="#camera" className="block py-2 text-gray-700 hover:text-skyblue">Inspection par caméra</a></li>
-                  <li><a href="#prevention" className="block py-2 text-gray-700 hover:text-skyblue">Nettoyage préventif</a></li>
+              <button className="text-gray-700 hover:text-skyblue font-medium focus:outline-none">
+                Services
+              </button>
+              <div
+                className={`absolute top-full left-0 mt-0 bg-white rounded shadow-lg z-50 transition-opacity duration-200 ${
+                  isDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                }`}
+              >
+                <ul className="min-w-[220px] py-2 px-4 text-left">
+                  <li>
+                    <a href="#drain" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Débouchage de drain
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#camera" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Inspection par caméra
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#prevention" className="block py-2 text-gray-700 hover:text-skyblue">
+                      Nettoyage préventif
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
 
-            <a href="#contact" className="text-gray-700 hover:text-skyblue">Demande de soumission</a>
-            <a href="#contact" className="text-gray-700 hover:text-skyblue">Contact</a>
+            <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium">
+              Demande de soumission
+            </a>
+            <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium">
+              Contact
+            </a>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -84,9 +98,10 @@ const handleLinkClick = (id: string) => {
               Demander une soumission gratuite
             </Button>
 
+            {/* Mobile Menu */}
             <Sheet>
-              <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon" aria-label="Open mobile menu">
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
@@ -101,7 +116,7 @@ const handleLinkClick = (id: string) => {
                     { label: "Demande de soumission", id: "contact" },
                     { label: "Contact", id: "contact" },
                   ].map((item) => (
-                    <SheetClose asChild key={item.label}>
+                    <SheetClose asChild key={item.id + item.label}>
                       <button
                         onClick={() => handleLinkClick(item.id)}
                         className="text-left text-gray-700 hover:text-skyblue font-medium text-lg py-2"
@@ -111,12 +126,14 @@ const handleLinkClick = (id: string) => {
                     </SheetClose>
                   ))}
 
-                  <Button
-                    onClick={() => handleLinkClick("contact")}
-                    className="mt-4 bg-skyblue hover:bg-skyblue-dark text-white"
-                  >
-                    Demander une soumission gratuite
-                  </Button>
+                  <SheetClose asChild>
+                    <Button
+                      onClick={() => handleLinkClick("contact")}
+                      className="mt-4 bg-skyblue hover:bg-skyblue-dark text-white"
+                    >
+                      Demander une soumission gratuite
+                    </Button>
+                  </SheetClose>
                 </div>
               </SheetContent>
             </Sheet>
