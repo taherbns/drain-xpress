@@ -99,7 +99,7 @@ const Navigation: React.FC = () => {
               </SheetTrigger>
               <SheetContent side="right">
                 <div className="flex flex-col space-y-4 mt-8">
-                  <button onClick={() => handleMobileLinkClick("#")} className="text-left text-gray-700 hover:text-skyblue font-medium text-lg py-2">Accueil</button>
+                  <button onClick={() => handleMobileLinkClick("hero")} className="text-left text-gray-700 hover:text-skyblue font-medium text-lg py-2">Accueil</button>
                   <button onClick={() => handleMobileLinkClick("about")} className="text-left text-gray-700 hover:text-skyblue font-medium text-lg py-2">À propos</button>
                   <div className="border-t pt-2">
                     <span className="text-gray-700 font-medium text-lg py-1">Services</span>

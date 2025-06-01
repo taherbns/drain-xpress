@@ -14,7 +14,7 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-   <section className="bg-[#295da0] min-h-[100vh] flex items-center">
+   <section id="hero" className="bg-[#295da0] min-h-[100vh] flex items-center">
 
 
       <div className="relative z-10 container mx-auto px-4 text-white">
