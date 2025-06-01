@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import { LanguageToggle } from "@/components/LanguageToggle";
@@ -23,7 +24,7 @@ const Navigation: React.FC = () => {
   const handleLinkClick = (id: string) => {
     setIsMenuOpen(false);
     setTimeout(() => {
-      const el = document.getElementById(id);
+      const el = id ? document.getElementById(id) : document.body;
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }, 50);
   };
@@ -40,7 +41,6 @@ const Navigation: React.FC = () => {
             />
           </a>
 
-          {/* Desktop Menu */}
           <nav className="hidden md:flex gap-12 items-center relative">
             <a href="#" className="text-gray-700 hover:text-skyblue font-medium">Accueil</a>
             <a href="#about" className="text-gray-700 hover:text-skyblue font-medium">À propos</a>
@@ -66,7 +66,6 @@ const Navigation: React.FC = () => {
             <a href="#contact" className="text-gray-700 hover:text-skyblue font-medium">Contact</a>
           </nav>
 
-          {/* Actions */}
           <div className="flex items-center gap-3">
             <LanguageToggle />
             <Button
@@ -76,7 +75,6 @@ const Navigation: React.FC = () => {
               Demander une soumission gratuite
             </Button>
 
-            {/* Mobile Menu */}
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
