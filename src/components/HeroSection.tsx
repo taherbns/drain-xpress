@@ -14,9 +14,18 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-   <section id="hero" className="bg-[#295da0] min-h-[100vh] flex items-center">
+    <section
+      id="hero"
+      className="relative bg-[#295da0] min-h-[100vh] flex items-center overflow-hidden"
+    >
+      {/* Image splash d'eau en arrière-plan */}
+      <img
+        src="assets/drainHero2.png" 
+        alt="Water splash background"
+        className="absolute top-0 right-40 w-[800px] z-0 pointer-events-none"
+      />
 
-
+      {/* Contenu principal */}
       <div className="relative z-10 container mx-auto px-4 text-white">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Bloc gauche : texte */}
@@ -42,7 +51,8 @@ export const HeroSection: React.FC = () => {
 
             <div className="text-white/85 text-l leading-relaxed space-y-2 max-w-lg">
               <p>
-                {t("emergencyDescription") || "Notre équipe est disponible 24h/24 pour vos urgences de drainage."}
+                {t("emergencyDescription") ||
+                  "Notre équipe est disponible 24h/24 pour vos urgences de drainage."}
               </p>
               <div className="flex items-center gap-2 mt-2">
                 <Phone className="w-4 h-4 text-white/70" />
@@ -79,23 +89,17 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Bloc droit : image */}
-          <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
-            <div className="relative rounded-lg overflow-hidden shadow-xl animate-fade-in">
+          {/* <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
+            <div className="relative rounded-lg">
               <img
-                src="https://images.unsplash.com/photo-1523552322653-4ca2658acbb0?ixlib=rb-4.1.0&q=80&w=1000&fit=crop"
+                src="assets/drainHero.png"
                 alt="Professional drain cleaning"
                 className="w-full h-96 object-cover"
               />
-              {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                <div className="bg-[#1262c9] text-white px-4 py-2 rounded-full inline-block mb-2">
-               /*   {t("discountOffer")}*/ }
-                {/* </div> */} 
-              {/* </div> */}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
   );
 };
-
