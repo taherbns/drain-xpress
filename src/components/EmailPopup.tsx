@@ -24,23 +24,47 @@ export const EmailPopup: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setSubmitting(true);
 
-    setTimeout(() => {
-      toast({
-        title: t("subscribeSuccess"),
-        description:
-          t("language") === "en"
-            ? "You will now receive our special offers and updates!"
-            : "Vous recevrez désormais nos offres spéciales et mises à jour !",
-      });
-      setSubmitting(false);
-      setOpen(false);
-      localStorage.setItem("hasSeenEmailPopup", "true");
-    }, 1000);
-  };
+  try {
+  const response = await fetch("http://localhost:5000/subscribe-newsletter", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ email }),
+});
+
+
+    if (!response.ok) throw new Error("Échec");
+
+    toast({
+      title: t("subscribeSuccess"),
+      description:
+        t("language") === "en"
+          ? "You will now receive our special offers and updates!"
+          : "Vous recevrez désormais nos offres spéciales et mises à jour !",
+    });
+
+    setEmail("");
+    setOpen(false);
+    localStorage.setItem("hasSeenEmailPopup", "true");
+  } catch (err) {
+    toast({
+      title: "Erreur",
+      description:
+        t("language") === "en"
+          ? "Subscription failed. Try again later."
+          : "Échec de l’abonnement. Veuillez réessayer plus tard.",
+    });
+  } finally {
+    setSubmitting(false);
+  }
+};
+
+  
 
   const handleClose = () => {
     setOpen(false);

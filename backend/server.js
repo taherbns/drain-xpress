@@ -48,6 +48,31 @@ Message: ${message}
   }
 });
 
+app.post("/subscribe-newsletter", async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: "Email requis." });
+  }
+
+  try {
+    const mailOptions = {
+      from: `"DrainXpress Newsletter" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "Nouvelle inscription à la newsletter",
+      text: `Nouvel abonné : ${email}`,
+      replyTo: email,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Inscription enregistrée avec succès." });
+  } catch (error) {
+    console.error("Erreur newsletter :", error);
+    res.status(500).json({ error: "Échec de l’enregistrement de l’email." });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Serveur backend en cours sur http://localhost:${PORT}`);
 });
