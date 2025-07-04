@@ -16,13 +16,14 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative bg-[#295da0] min-h-[100vh] flex items-center overflow-hidden"
+      className="relative bg-[#295da0] min-h-[90vh] flex items-center overflow-hidden"
     >
       {/* Image splash d'eau en arrière-plan */}
       <img
-        src="assets/drainHero2.png" 
+        src="assets/technicienHero.png" 
         alt="Water splash background"
-        className="absolute top-0 right-40 w-[800px] z-0 pointer-events-none"
+        className="absolute right-20 bottom-0 w-[800px] max-w-[100%] lg:max-w-[900px] z-10 pointer-events-none"
+
       />
 
       {/* Contenu principal */}
