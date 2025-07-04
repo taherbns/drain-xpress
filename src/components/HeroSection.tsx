@@ -20,9 +20,9 @@ export const HeroSection: React.FC = () => {
     >
       {/* Image splash d'eau en arrière-plan */}
       <img
-        src="assets/technicienHero.png" 
+        src="assets/tech2.png" 
         alt="Water splash background"
-        className="absolute right-20 bottom-0 w-[800px] max-w-[100%] lg:max-w-[900px] z-10 pointer-events-none"
+        className="absolute right-20 bottom-0 w-[600px] max-w-[100%] lg:max-w-[900px] z-10 pointer-events-none"
 
       />
 
